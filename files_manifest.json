@@ -8,8 +8,8 @@
     },
     {
       "path": "modules/game_autocatch/autocatch.lua",
-      "sha256": "c36911a398e661940f2fc626b5167a1915dccb776889c1924d0a5ff18416a43b",
-      "size": 124853
+      "sha256": "add974832a5801fd1b05a0b51a88207adb2b2e3379f7b1b9741911d46737949c",
+      "size": 124983
     },
     {
       "path": "modules/game_autocatch/autocatch.otmod",
@@ -73,8 +73,8 @@
     },
     {
       "path": "modules/game_autocatch/tests/autocatch_runtime_spec.lua",
-      "sha256": "db91111d1c9c7b3b54d910ef2e2de8e1be2a73ea60cbcf997573ead4233d67dc",
-      "size": 41257
+      "sha256": "44e860e00572e47c0510636f20cf001067bec8de6067b326d83b12054f1f0c9c",
+      "size": 41641
     },
     {
       "path": "modules/game_autocatch/tests/catch_interval_spec.lua",
@@ -95,6 +95,56 @@
       "path": "modules/game_catch/catch.lua",
       "sha256": "13006121847a055587319d115ccd58dc25b792fef970342a73d9ae344038c40b",
       "size": 10199
+    },
+    {
+      "path": "modules/game_hunt/hunt.lua",
+      "sha256": "f1e7df946c8eb2e202db45a8dca7a9f7428ccff0eaf2068f2bb7ea145015c11b",
+      "size": 74978
+    },
+    {
+      "path": "modules/game_hunt/hunt.otmod",
+      "sha256": "99f0705acf55e2a0a42edac626133c70c2277e8950dcf33833ad29d13c45e87e",
+      "size": 308
+    },
+    {
+      "path": "modules/game_hunt/hunt.otui",
+      "sha256": "07e13ea29101cf14031cc6b45593572b3e658385cd7c08d8a3875ebebe53b34c",
+      "size": 44297
+    },
+    {
+      "path": "modules/game_hunt/hunt_stats.lua",
+      "sha256": "dcb55455d9e6b35d03f40e25995484e2793e6204adc4f4baeed044cfc69bc40b",
+      "size": 3353
+    },
+    {
+      "path": "modules/game_hunt/images/icon.png",
+      "sha256": "15e9c9d6914b271f7961ed327de842ee937967362a941c99050e7c14a6e1bdd5",
+      "size": 2500
+    },
+    {
+      "path": "modules/game_hunt/route.lua",
+      "sha256": "97f5deedb5daaf5e4201f14c5cc0d0a05d2fdc468cad2e4f5d4eaaafca00f9e4",
+      "size": 11843
+    },
+    {
+      "path": "modules/game_hunt/targeting.lua",
+      "sha256": "45a1f24ec65cd29f5871aef65dc4efea0487a3deacaefdc40bcbb9440d6f56f8",
+      "size": 4617
+    },
+    {
+      "path": "modules/game_hunt/tests/hunt_fake.lua",
+      "sha256": "505ca7d850932c7caa3d3974fd9870886dc80ec23203f2a91515230ac222bffb",
+      "size": 4739
+    },
+    {
+      "path": "modules/game_hunt/tests/hunt_logic_spec.lua",
+      "sha256": "193ec1ad4511de6e8ebaf45ead7b18c7b03b20eaed62aefaca9de399cd1563c2",
+      "size": 8474
+    },
+    {
+      "path": "modules/game_hunt/tests/hunt_runtime_spec.lua",
+      "sha256": "93c7d3e0ac1f292adf84c414e856abf2cc273cc3b18f8d79218ea183dba94cbe",
+      "size": 14039
     },
     {
       "path": "modules/game_pokemonbrokes/brokes.lua",

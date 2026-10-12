@@ -1,6 +1,7 @@
-# PokeAlliance AutoCatch + Auto Item Refresh
+# PokeAlliance AutoCatch + Hunt + Auto Item Refresh
 
-Módulos de AutoCatch e Auto Item Refresh para o cliente PokeAlliance no Windows.
+Módulos de AutoCatch, Hunt (caça por rotas) e Auto Item Refresh para o cliente
+PokeAlliance no Windows.
 
 > ⚠️ **Aviso de risco:** o uso de automações pode violar as regras do jogo e
 > resultar em advertência, suspensão ou banimento da conta. Use este projeto
@@ -18,6 +19,8 @@ Módulos de AutoCatch e Auto Item Refresh para o cliente PokeAlliance no Windows
 - Espera automática quando há staff (GM/CM/Tutor) na tela.
 - Contadores da sessão (lançadas, capturas confirmadas, descartes, Balls gastas).
 - Auto Item Refresh com vários itens independentes.
+- Hunt: caça automática seguindo rotas (waypoints), com painel próprio, alvos
+  por prioridade, cura, moves, proteções e estatísticas; espera o AutoCatch.
 
 ## Requisitos
 
@@ -43,6 +46,7 @@ num cliente já patchado apenas atualiza os módulos.
 ## O que é instalado
 
 - `modules/game_autocatch/` (AutoCatch, Auto Item Refresh e seus testes).
+- `modules/game_hunt/` (Hunt por rotas e seus testes).
 - `modules/game_buffs/playerbuffs.lua` (API de buffs usada pelo Auto Item).
 - `modules/game_catch/catch.lua` e `modules/game_pokemonbrokes/brokes.lua`
   (notificações de captura e integração com o AutoCatch).
@@ -94,6 +98,61 @@ desativa sozinho.
 Na aba **Velocidade & Delays** ficam os presets de intervalo e as proteções:
 `Pausar quando houver staff na tela` (recomendado) e `Reativar automaticamente
 ao entrar no jogo`.
+
+## Hunt
+
+Abra o painel **Hunt** (botão no menu superior). O painel tem cinco abas e uma
+barra de status sempre visível com o botão **INICIAR / PARAR HUNT**
+(atalho `Ctrl+Shift+H`).
+
+### Ordem de decisão (a cada tick)
+
+1. **Proteções**: staff (GM/CM/Tutor) ou jogador na tela deixam o Hunt em
+   espera (o AutoCatch também espera); HP crítico para o Hunt.
+2. **Suporte**: cura do treinador e do Pokémon (summon) por item.
+3. **Ataque**: escolhe o alvo pela prioridade da lista, Shiny primeiro, alvo
+   atual, HP e distância. Anti-KS, lista de "nunca atacar", desistência de alvo
+   que não perde HP (fica 30 s ignorado), perseguição e modo lure.
+4. **AutoCatch**: com *Esperar o Auto Catch* ligado, não anda enquanto houver
+   corpos pendentes e volta se um deles ficar longe demais.
+5. **Rota**: anda até o próximo ponto. Se travar, tenta destravar e, após 3
+   tentativas, pula o ponto.
+
+### Rotas
+
+1. Na aba **Rotas**, clique em **+ Nova**.
+2. Escolha o tipo do ponto e adicione com **+ Ponto aqui** (`Ctrl+Shift+J`),
+   **+ Clicar no mapa** ou **Gravar andando** (um ponto a cada N SQM; ao trocar
+   de andar o tile da escada vira ponto *Exato*).
+3. Clique em um ponto da lista para inserir os próximos depois dele; use
+   `^`/`v` para reordenar, **Ir** para seguir a partir dele e **X** para excluir.
+
+| Tipo | O que faz |
+| --- | --- |
+| Caminhar | Anda até o ponto, com tolerância de 0 a 5 SQM (padrão 1). |
+| Exato | Pisa exatamente no tile (escada, buraco, teleporte). |
+| Parar | Fica parado N segundos (lure). |
+| Usar | Usa o tile (alavanca, porta, escada de mão). |
+| Falar | Fala um texto no chat. |
+| Marcador / Ir para | Nomeia um ponto e pula para ele. |
+
+Modos: **Loop**, **Ida e volta** e **Uma vez** (para no fim). Também é possível
+inverter a rota, ter várias rotas salvas e **Exportar/Importar** pela área de
+transferência (texto `PKAHUNT1:...`).
+
+### Alvos, suporte e proteções
+
+- **Alvos**: nome + prioridade (1 a 5, clique para mudar), `*` para todos, e
+  **+ Pokémon que estão na tela**. Lista vazia com *Atacar todos* ligado ataca
+  qualquer Pokémon selvagem.
+- **Suporte**: item de cura do treinador e do Pokémon com limite de HP; rotação
+  de moves enviada no chat (ex.: `m1`) respeitando a recarga de cada um.
+- **Proteções**: staff, jogador (com lista de exceções), HP crítico, pular
+  ponto travado, retomar ao entrar no jogo e alertas (janela piscando e aviso
+  na tela, inclusive quando aparece um Shiny).
+
+O painel **Painel** mostra tempo, abates, abates/hora, XP/hora, capturas do
+AutoCatch, Shinies vistos, voltas na rota e SQM andados.
 
 ## Auto Item Refresh
 
@@ -185,6 +244,7 @@ autocatch-pka/
 ├─ README.md
 └─ modules/
    ├─ game_autocatch/
+   ├─ game_hunt/
    ├─ game_buffs/playerbuffs.lua
    ├─ game_catch/catch.lua
    └─ game_pokemonbrokes/brokes.lua
@@ -197,12 +257,22 @@ Os testes não precisam do cliente aberto; basta um `lua` ou `luajit` no `PATH`:
 ```powershell
 lua modules/game_autocatch/tests/catch_interval_spec.lua
 lua modules/game_autocatch/tests/autocatch_runtime_spec.lua
+lua modules/game_hunt/tests/hunt_logic_spec.lua
+lua modules/game_hunt/tests/hunt_runtime_spec.lua
 ```
 
 O segundo carrega o módulo inteiro em um cliente simulado
-(`tests/fake_client.lua`) e cobre varredura, fila, Balls, staff e Auto Item.
+(`tests/fake_client.lua`) e cobre varredura, fila, Balls, staff e Auto Item. Os testes do Hunt cobrem rotas,
+alvos, proteções, integração com o AutoCatch e o painel.
 
 ## Histórico
+
+### 12/10/2026
+
+- Novo módulo `game_hunt`: Hunt por rotas com painel de configuração em abas
+  (Painel, Rotas, Alvos, Suporte, Proteções), gravação de rota, exportar e
+  importar, cura, moves, anti-KS, alertas e estatísticas.
+- AutoCatch espera junto quando o Hunt está em espera por staff/jogador.
 
 ### 28/09/2026
 

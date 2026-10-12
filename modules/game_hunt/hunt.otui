@@ -1,0 +1,1769 @@
+HuntCard < UIWidget
+  image-source: /images/general_ui/bordered_background
+  image-border: 8
+  image-color: #15222e
+
+HuntPrimaryButton < UIWidget
+  height: 32
+  image-source: /images/newui/blueStraight
+  image-border: 4
+  color: #ffffff
+  font: poppins bold 11
+  text-align: center
+  change-cursor-image: true
+  cursor: pointer
+  focusable: false
+
+  $hover:
+    image-color: #d9f1ff
+
+  $pressed:
+    image-color: #a8d8f4
+
+HuntStartButton < HuntPrimaryButton
+  image-color: #3fbf7f
+
+  $hover:
+    image-color: #62d99a
+
+  $on:
+    image-color: #d8505f
+
+HuntSecondaryButton < UIWidget
+  height: 26
+  image-source: /images/newui/grayStraight
+  image-border: 4
+  color: #dbe5ec
+  font: poppins semibold 9
+  text-align: center
+  change-cursor-image: true
+  cursor: pointer
+  focusable: false
+
+  $hover:
+    image-color: #d9e6ef
+    color: #ffffff
+
+  $on:
+    image-source: /images/newui/blueStraight
+    color: #ffffff
+
+HuntDangerButton < HuntSecondaryButton
+  image-color: #a85863
+  color: #ffffff
+
+  $hover:
+    image-color: #d86d79
+
+HuntIconButton < HuntSecondaryButton
+  size: 24 22
+  font: poppins bold 9
+
+HuntTabButton < UIWidget
+  height: 30
+  image-source: /images/newui/grayStraight
+  image-border: 4
+  color: #8da3b3
+  font: poppins bold 10
+  text-align: center
+  change-cursor-image: true
+  cursor: pointer
+  focusable: false
+
+  $hover:
+    image-color: #d9e6ef
+    color: #ffffff
+
+  $on:
+    image-source: /images/newui/blueStraight
+    color: #ffffff
+
+HuntOptionButton < UIWidget
+  height: 24
+  image-source: /images/newui/grayStraight
+  image-border: 4
+  color: #9cb1c2
+  font: poppins bold 9
+  text-align: center
+  change-cursor-image: true
+  cursor: pointer
+  focusable: false
+
+  $hover:
+    image-color: #d9e6ef
+    color: #ffffff
+
+  $on:
+    image-source: /images/newui/blueStraight
+    color: #ffffff
+
+HuntItemSlot < UIItem
+  size: 40 40
+  virtual: true
+  phantom: false
+  draggable: false
+  item-visible: true
+  image-source: /modules/game_poketask/images/itemslot
+  image-border: 2
+
+HuntCloseButton < UIWidget
+  size: 20 20
+  image-source: /images/newui/close
+  cursor: pointer
+
+HuntSectionTitle < Label
+  color: #7fa4bb
+  font: poppins bold 10
+  text-auto-resize: true
+  phantom: true
+
+HuntHint < Label
+  color: #8fa9ba
+  font: poppins semibold 9
+  text-wrap: true
+  phantom: true
+
+HuntFieldLabel < Label
+  color: #dce9f2
+  font: poppins semibold 9
+  text-auto-resize: true
+  phantom: true
+
+HuntNumberEdit < TextEdit
+  width: 44
+  height: 24
+  color: #ffffff
+  font: poppins bold 10
+  text-align: center
+
+HuntStatTile < HuntCard
+  height: 58
+  image-color: #1a2a38
+
+HuntWaypointRow < HuntCard
+  height: 30
+  focusable: false
+
+  Label
+    id: wpIndex
+    anchors.left: parent.left
+    anchors.verticalCenter: parent.verticalCenter
+    margin-left: 8
+    width: 28
+    text: 1
+    color: #6f8798
+    font: poppins bold 9
+    text-align: right
+    phantom: true
+
+  Label
+    id: wpType
+    anchors.left: wpIndex.right
+    anchors.verticalCenter: parent.verticalCenter
+    margin-left: 8
+    size: 52 18
+    image-source: /images/general_ui/bordered_background
+    image-border: 6
+    image-color: #4aa8e0
+    text: ANDAR
+    color: #0d1620
+    font: poppins bold 8
+    text-align: center
+    phantom: true
+
+  Label
+    id: wpDesc
+    anchors.left: wpType.right
+    anchors.right: wpUp.left
+    anchors.verticalCenter: parent.verticalCenter
+    margin-left: 10
+    margin-right: 6
+    text: -
+    color: #dbe5ec
+    font: poppins semibold 9
+    text-wrap: false
+    phantom: true
+
+  HuntIconButton
+    id: wpUp
+    anchors.right: wpDown.left
+    anchors.verticalCenter: parent.verticalCenter
+    margin-right: 3
+    text: ^
+    tooltip: Subir
+
+  HuntIconButton
+    id: wpDown
+    anchors.right: wpGo.left
+    anchors.verticalCenter: parent.verticalCenter
+    margin-right: 3
+    text: v
+    tooltip: Descer
+
+  HuntIconButton
+    id: wpGo
+    anchors.right: wpDelete.left
+    anchors.verticalCenter: parent.verticalCenter
+    margin-right: 3
+    width: 30
+    text: Ir
+    tooltip: Seguir a rota a partir deste ponto
+
+  HuntDangerButton
+    id: wpDelete
+    anchors.right: parent.right
+    anchors.verticalCenter: parent.verticalCenter
+    margin-right: 6
+    size: 24 22
+    text: X
+    tooltip: Excluir ponto
+
+HuntTargetRow < HuntCard
+  height: 32
+  focusable: false
+
+  Label
+    id: targetName
+    anchors.left: parent.left
+    anchors.right: targetPriority.left
+    anchors.verticalCenter: parent.verticalCenter
+    margin-left: 12
+    margin-right: 8
+    text: Pokemon
+    color: #dbeaf5
+    font: poppins bold 10
+    text-wrap: false
+    phantom: true
+
+  HuntSecondaryButton
+    id: targetPriority
+    anchors.right: targetEnabled.left
+    anchors.verticalCenter: parent.verticalCenter
+    margin-right: 10
+    width: 120
+    height: 22
+    text: Prioridade ***--
+    tooltip: Clique para mudar a prioridade (5 = ataca primeiro)
+
+  CheckBox
+    id: targetEnabled
+    anchors.right: targetDelete.left
+    anchors.verticalCenter: parent.verticalCenter
+    margin-right: 8
+    width: 56
+    text: Ativo
+
+  HuntDangerButton
+    id: targetDelete
+    anchors.right: parent.right
+    anchors.verticalCenter: parent.verticalCenter
+    margin-right: 6
+    size: 24 22
+    text: X
+
+HuntMoveRow < HuntCard
+  height: 32
+  focusable: false
+
+  HuntFieldLabel
+    id: moveTextLabel
+    anchors.left: parent.left
+    anchors.verticalCenter: parent.verticalCenter
+    margin-left: 12
+    text: Comando:
+
+  TextEdit
+    id: moveText
+    anchors.left: moveTextLabel.right
+    anchors.verticalCenter: parent.verticalCenter
+    margin-left: 6
+    width: 110
+    height: 24
+    color: #ffffff
+    font: poppins bold 10
+    tooltip: Texto enviado no chat (ex.: m1)
+
+  HuntFieldLabel
+    id: moveCooldownLabel
+    anchors.left: moveText.right
+    anchors.verticalCenter: parent.verticalCenter
+    margin-left: 12
+    text: Recarga (s):
+
+  HuntNumberEdit
+    id: moveCooldown
+    anchors.left: moveCooldownLabel.right
+    anchors.verticalCenter: parent.verticalCenter
+    margin-left: 6
+
+  CheckBox
+    id: moveEnabled
+    anchors.right: moveDelete.left
+    anchors.verticalCenter: parent.verticalCenter
+    margin-right: 8
+    width: 56
+    text: Ativo
+
+  HuntDangerButton
+    id: moveDelete
+    anchors.right: parent.right
+    anchors.verticalCenter: parent.verticalCenter
+    margin-right: 6
+    size: 24 22
+    text: X
+
+HuntPanel < UIWidget
+  id: huntPanel
+
+  UIWidget
+    id: navBar
+    anchors.top: parent.top
+    anchors.left: parent.left
+    anchors.right: parent.right
+    height: 30
+    margin-left: 14
+    margin-right: 14
+    layout:
+      type: horizontalBox
+      spacing: 6
+      fit-children: false
+
+    HuntTabButton
+      id: nav_dashboard
+      width: 124
+      text: Painel
+
+    HuntTabButton
+      id: nav_routes
+      width: 124
+      text: Rotas
+
+    HuntTabButton
+      id: nav_targets
+      width: 124
+      text: Alvos
+
+    HuntTabButton
+      id: nav_support
+      width: 124
+      text: Suporte
+
+    HuntTabButton
+      id: nav_safety
+      width: 124
+      text: Protecoes
+
+  HuntCard
+    id: statusCard
+    anchors.top: navBar.bottom
+    anchors.left: parent.left
+    anchors.right: parent.right
+    height: 70
+    margin-top: 8
+    margin-left: 14
+    margin-right: 14
+
+    UIWidget
+      id: statusIndicator
+      size: 14 14
+      anchors.left: parent.left
+      anchors.verticalCenter: parent.verticalCenter
+      margin-left: 14
+      image-source: /images/general_ui/bordered_background
+      image-border: 6
+      image-color: #a85863
+
+    Label
+      id: statusTitle
+      anchors.left: statusIndicator.right
+      anchors.top: parent.top
+      margin-left: 10
+      margin-top: 8
+      text: HUNT PARADO
+      color: #8da3b3
+      font: poppins bold 12
+      text-auto-resize: true
+
+    Label
+      id: statusDetail
+      anchors.left: statusIndicator.right
+      anchors.top: statusTitle.bottom
+      anchors.right: toggleButton.left
+      margin-left: 10
+      margin-right: 10
+      margin-top: 1
+      text: -
+      color: #c5d4df
+      font: poppins semibold 9
+      text-wrap: false
+
+    Label
+      id: statusMessage
+      anchors.left: statusIndicator.right
+      anchors.top: statusDetail.bottom
+      anchors.right: toggleButton.left
+      margin-left: 10
+      margin-right: 10
+      margin-top: 1
+      text: Pronto.
+      color: #7fa4bb
+      font: poppins semibold 9
+      text-wrap: false
+
+    HuntStartButton
+      id: toggleButton
+      anchors.right: parent.right
+      anchors.verticalCenter: parent.verticalCenter
+      margin-right: 12
+      width: 140
+      height: 38
+      text: INICIAR HUNT
+      font: poppins bold 11
+      tooltip: Liga / desliga o Hunt (Ctrl+Shift+H)
+
+  UIWidget
+    id: tab_dashboard
+    anchors.top: statusCard.bottom
+    anchors.left: parent.left
+    anchors.right: parent.right
+    anchors.bottom: parent.bottom
+    margin-top: 8
+
+    UIWidget
+      id: statsGrid
+      anchors.top: parent.top
+      anchors.left: parent.left
+      anchors.right: parent.right
+      height: 124
+      margin-left: 14
+      margin-right: 14
+      layout:
+        type: grid
+        cell-size: 160 58
+        cell-spacing: 8
+        num-columns: 4
+        flow: true
+
+      HuntStatTile
+        id: tileTime
+        Label
+          id: stat_time
+          anchors.top: parent.top
+          anchors.left: parent.left
+          anchors.right: parent.right
+          margin-top: 8
+          text: 00:00
+          color: #ffffff
+          font: poppins bold 16
+          text-align: center
+        Label
+          anchors.bottom: parent.bottom
+          anchors.left: parent.left
+          anchors.right: parent.right
+          margin-bottom: 7
+          text: Tempo de hunt
+          color: #7fa4bb
+          font: poppins semibold 9
+          text-align: center
+
+      HuntStatTile
+        id: tileKills
+        Label
+          id: stat_kills
+          anchors.top: parent.top
+          anchors.left: parent.left
+          anchors.right: parent.right
+          margin-top: 8
+          text: 0
+          color: #ff9f5a
+          font: poppins bold 16
+          text-align: center
+        Label
+          anchors.bottom: parent.bottom
+          anchors.left: parent.left
+          anchors.right: parent.right
+          margin-bottom: 7
+          text: Abates
+          color: #7fa4bb
+          font: poppins semibold 9
+          text-align: center
+
+      HuntStatTile
+        id: tileKillsHour
+        Label
+          id: stat_killsHour
+          anchors.top: parent.top
+          anchors.left: parent.left
+          anchors.right: parent.right
+          margin-top: 8
+          text: 0
+          color: #ffcc66
+          font: poppins bold 16
+          text-align: center
+        Label
+          anchors.bottom: parent.bottom
+          anchors.left: parent.left
+          anchors.right: parent.right
+          margin-bottom: 7
+          text: Abates / hora
+          color: #7fa4bb
+          font: poppins semibold 9
+          text-align: center
+
+      HuntStatTile
+        id: tileXpHour
+        Label
+          id: stat_xpHour
+          anchors.top: parent.top
+          anchors.left: parent.left
+          anchors.right: parent.right
+          margin-top: 8
+          text: 0
+          color: #62d985
+          font: poppins bold 16
+          text-align: center
+        Label
+          anchors.bottom: parent.bottom
+          anchors.left: parent.left
+          anchors.right: parent.right
+          margin-bottom: 7
+          text: XP / hora
+          color: #7fa4bb
+          font: poppins semibold 9
+          text-align: center
+
+      HuntStatTile
+        id: tileCatches
+        Label
+          id: stat_catches
+          anchors.top: parent.top
+          anchors.left: parent.left
+          anchors.right: parent.right
+          margin-top: 8
+          text: 0
+          color: #c99bff
+          font: poppins bold 16
+          text-align: center
+        Label
+          anchors.bottom: parent.bottom
+          anchors.left: parent.left
+          anchors.right: parent.right
+          margin-bottom: 7
+          text: Capturas (Auto Catch)
+          color: #7fa4bb
+          font: poppins semibold 9
+          text-align: center
+
+      HuntStatTile
+        id: tileShinies
+        Label
+          id: stat_shinies
+          anchors.top: parent.top
+          anchors.left: parent.left
+          anchors.right: parent.right
+          margin-top: 8
+          text: 0
+          color: #e0c3ff
+          font: poppins bold 16
+          text-align: center
+        Label
+          anchors.bottom: parent.bottom
+          anchors.left: parent.left
+          anchors.right: parent.right
+          margin-bottom: 7
+          text: Shinies vistos
+          color: #7fa4bb
+          font: poppins semibold 9
+          text-align: center
+
+      HuntStatTile
+        id: tileLaps
+        Label
+          id: stat_laps
+          anchors.top: parent.top
+          anchors.left: parent.left
+          anchors.right: parent.right
+          margin-top: 8
+          text: 0
+          color: #62b6f0
+          font: poppins bold 16
+          text-align: center
+        Label
+          anchors.bottom: parent.bottom
+          anchors.left: parent.left
+          anchors.right: parent.right
+          margin-bottom: 7
+          text: Voltas na rota
+          color: #7fa4bb
+          font: poppins semibold 9
+          text-align: center
+
+      HuntStatTile
+        id: tileSteps
+        Label
+          id: stat_steps
+          anchors.top: parent.top
+          anchors.left: parent.left
+          anchors.right: parent.right
+          margin-top: 8
+          text: 0
+          color: #9cb1c2
+          font: poppins bold 16
+          text-align: center
+        Label
+          anchors.bottom: parent.bottom
+          anchors.left: parent.left
+          anchors.right: parent.right
+          margin-bottom: 7
+          text: SQM andados
+          color: #7fa4bb
+          font: poppins semibold 9
+          text-align: center
+
+    HuntCard
+      id: routeCard
+      anchors.top: statsGrid.bottom
+      anchors.left: parent.left
+      anchors.right: parent.right
+      height: 96
+      margin-top: 8
+      margin-left: 14
+      margin-right: 14
+
+      HuntSectionTitle
+        anchors.left: parent.left
+        anchors.top: parent.top
+        margin-left: 14
+        margin-top: 8
+        text: SESSAO ATUAL
+
+      HuntSecondaryButton
+        id: resetStatsButton
+        anchors.right: parent.right
+        anchors.top: parent.top
+        margin-right: 10
+        margin-top: 6
+        width: 120
+        height: 22
+        text: Zerar contadores
+
+      HuntHint
+        id: routeInfo
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.top: parent.top
+        margin-left: 14
+        margin-right: 14
+        margin-top: 30
+        height: 14
+        text: Nenhuma rota criada
+        color: #dbe5ec
+        text-wrap: false
+
+      HuntHint
+        id: waypointInfo
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.top: routeInfo.bottom
+        margin-left: 14
+        margin-right: 14
+        margin-top: 3
+        height: 14
+        text: Ponto atual: -
+        text-wrap: false
+
+      HuntHint
+        id: topKills
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.top: waypointInfo.bottom
+        margin-left: 14
+        margin-right: 14
+        margin-top: 3
+        height: 14
+        text: Mais abatidos: nenhum ainda
+        text-wrap: false
+
+      HuntHint
+        id: skippedInfo
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.top: topKills.bottom
+        margin-left: 14
+        margin-right: 14
+        margin-top: 3
+        height: 14
+        text: -
+        text-wrap: false
+
+    HuntCard
+      id: quickCard
+      anchors.top: routeCard.bottom
+      anchors.left: parent.left
+      anchors.right: parent.right
+      anchors.bottom: parent.bottom
+      margin-top: 8
+      margin-left: 14
+      margin-right: 14
+      margin-bottom: 10
+
+      HuntSectionTitle
+        anchors.left: parent.left
+        anchors.top: parent.top
+        margin-left: 14
+        margin-top: 8
+        text: COMPORTAMENTO
+
+      CheckBox
+        id: optWalk
+        anchors.left: parent.left
+        anchors.top: parent.top
+        margin-left: 14
+        margin-top: 32
+        width: 300
+        text: Seguir a rota
+        tooltip: Anda pelos pontos da rota ativa
+
+      CheckBox
+        id: optAttack
+        anchors.left: parent.horizontalCenter
+        anchors.top: optWalk.top
+        width: 300
+        text: Atacar Pokemon da lista de alvos
+        tooltip: Escolhe e ataca alvos segundo a aba Alvos
+
+      CheckBox
+        id: optWaitCatch
+        anchors.left: parent.left
+        anchors.top: optWalk.bottom
+        margin-left: 14
+        margin-top: 10
+        width: 300
+        text: Esperar o Auto Catch antes de andar
+        tooltip: Nao sai de perto enquanto houver corpos para capturar
+
+      CheckBox
+        id: optStartNearest
+        anchors.left: parent.horizontalCenter
+        anchors.top: optWaitCatch.top
+        width: 300
+        text: Comecar pelo ponto mais proximo
+        tooltip: Desmarcado: sempre comeca no ponto 1
+
+      HuntHint
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
+        margin-left: 14
+        margin-right: 14
+        margin-bottom: 8
+        height: 28
+        text: Atalhos: Ctrl+Shift+H liga/desliga o Hunt  |  Ctrl+Shift+J adiciona um ponto na sua posicao (tipo escolhido na aba Rotas).
+
+  UIWidget
+    id: tab_routes
+    anchors.top: statusCard.bottom
+    anchors.left: parent.left
+    anchors.right: parent.right
+    anchors.bottom: parent.bottom
+    margin-top: 8
+    visible: false
+
+    HuntCard
+      id: routeHeaderCard
+      anchors.top: parent.top
+      anchors.left: parent.left
+      anchors.right: parent.right
+      height: 96
+      margin-left: 14
+      margin-right: 14
+
+      HuntIconButton
+        id: routePrev
+        anchors.left: parent.left
+        anchors.top: parent.top
+        margin-left: 10
+        margin-top: 8
+        size: 26 24
+        text: <
+        tooltip: Rota anterior
+
+      Label
+        id: routeName
+        anchors.left: routePrev.right
+        anchors.right: routeNext.left
+        anchors.verticalCenter: routePrev.verticalCenter
+        margin-left: 6
+        margin-right: 6
+        text: Nenhuma rota
+        color: #ffffff
+        font: poppins bold 11
+        text-align: center
+        phantom: true
+
+      HuntIconButton
+        id: routeNext
+        anchors.right: routeNew.left
+        anchors.verticalCenter: routePrev.verticalCenter
+        margin-right: 10
+        size: 26 24
+        text: >
+        tooltip: Proxima rota
+
+      HuntPrimaryButton
+        id: routeNew
+        anchors.right: routeDelete.left
+        anchors.verticalCenter: routePrev.verticalCenter
+        margin-right: 6
+        width: 70
+        height: 24
+        font: poppins bold 9
+        text: + Nova
+
+      HuntDangerButton
+        id: routeDelete
+        anchors.right: parent.right
+        anchors.verticalCenter: routePrev.verticalCenter
+        margin-right: 10
+        width: 76
+        height: 24
+        text: Excluir
+        tooltip: Clique duas vezes para confirmar
+
+      HuntHint
+        id: routeSummary
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.top: routePrev.bottom
+        margin-left: 12
+        margin-right: 12
+        margin-top: 4
+        height: 14
+        text: -
+        text-align: center
+        text-wrap: false
+
+      TextEdit
+        id: routeNameEdit
+        anchors.left: parent.left
+        anchors.bottom: parent.bottom
+        margin-left: 10
+        margin-bottom: 9
+        width: 150
+        height: 24
+        color: #ffffff
+        font: poppins bold 10
+        tooltip: Nome da rota
+
+      HuntSecondaryButton
+        id: routeRename
+        anchors.left: routeNameEdit.right
+        anchors.verticalCenter: routeNameEdit.verticalCenter
+        margin-left: 4
+        width: 70
+        height: 24
+        text: Renomear
+
+      HuntSecondaryButton
+        id: routeMode
+        anchors.left: routeRename.right
+        anchors.verticalCenter: routeNameEdit.verticalCenter
+        margin-left: 8
+        width: 120
+        height: 24
+        text: Modo: Loop
+        tooltip: Loop: volta ao ponto 1. Ida e volta: percorre ao contrario. Uma vez: para no fim.
+
+      HuntSecondaryButton
+        id: routeReverse
+        anchors.left: routeMode.right
+        anchors.verticalCenter: routeNameEdit.verticalCenter
+        margin-left: 4
+        width: 64
+        height: 24
+        text: Inverter
+
+      HuntSecondaryButton
+        id: routeExport
+        anchors.left: routeReverse.right
+        anchors.verticalCenter: routeNameEdit.verticalCenter
+        margin-left: 4
+        width: 70
+        height: 24
+        text: Exportar
+        tooltip: Copia a rota para a area de transferencia
+
+      HuntSecondaryButton
+        id: routeImport
+        anchors.left: routeExport.right
+        anchors.right: parent.right
+        anchors.verticalCenter: routeNameEdit.verticalCenter
+        margin-left: 4
+        margin-right: 10
+        height: 24
+        text: Importar
+        tooltip: Cria uma rota a partir do texto copiado
+
+    HuntCard
+      id: waypointToolsCard
+      anchors.top: routeHeaderCard.bottom
+      anchors.left: parent.left
+      anchors.right: parent.right
+      height: 116
+      margin-top: 8
+      margin-left: 14
+      margin-right: 14
+
+      UIWidget
+        id: typeBar
+        anchors.top: parent.top
+        anchors.left: parent.left
+        anchors.right: parent.right
+        height: 24
+        margin-top: 8
+        margin-left: 10
+        margin-right: 10
+        layout:
+          type: horizontalBox
+          spacing: 4
+
+        HuntOptionButton
+          id: type_walk
+          width: 84
+          text: Caminhar
+          tooltip: Anda ate o ponto (com tolerancia)
+        HuntOptionButton
+          id: type_exact
+          width: 84
+          text: Exato
+          tooltip: Pisa exatamente no tile (escada, buraco, teleporte)
+        HuntOptionButton
+          id: type_stand
+          width: 84
+          text: Parar
+          tooltip: Fica parado alguns segundos (lure)
+        HuntOptionButton
+          id: type_use
+          width: 84
+          text: Usar
+          tooltip: Usa o tile (alavanca, porta, escada de mao)
+        HuntOptionButton
+          id: type_say
+          width: 84
+          text: Falar
+          tooltip: Fala um texto no chat
+        HuntOptionButton
+          id: type_label
+          width: 84
+          text: Marcador
+          tooltip: Marca um ponto da rota com um nome
+        HuntOptionButton
+          id: type_goto
+          width: 84
+          text: Ir para
+          tooltip: Pula para um marcador
+
+      HuntHint
+        id: wpParamHint
+        anchors.left: parent.left
+        anchors.top: typeBar.bottom
+        margin-left: 12
+        margin-top: 10
+        width: 190
+        height: 14
+        text: -
+        text-wrap: false
+
+      TextEdit
+        id: wpParamEdit
+        anchors.left: wpParamHint.right
+        anchors.verticalCenter: wpParamHint.verticalCenter
+        margin-left: 6
+        width: 130
+        height: 24
+        color: #ffffff
+        font: poppins bold 10
+
+      HuntPrimaryButton
+        id: wpAddHere
+        anchors.left: wpParamEdit.right
+        anchors.verticalCenter: wpParamHint.verticalCenter
+        margin-left: 8
+        width: 112
+        height: 26
+        font: poppins bold 9
+        text: + Ponto aqui
+        tooltip: Adiciona um ponto na sua posicao (Ctrl+Shift+J)
+
+      HuntSecondaryButton
+        id: wpAddMap
+        anchors.left: wpAddHere.right
+        anchors.right: parent.right
+        anchors.verticalCenter: wpParamHint.verticalCenter
+        margin-left: 6
+        margin-right: 10
+        height: 26
+        text: + Clicar no mapa
+
+      HuntSecondaryButton
+        id: wpRecord
+        anchors.left: parent.left
+        anchors.bottom: parent.bottom
+        margin-left: 10
+        margin-bottom: 9
+        width: 130
+        height: 26
+        text: Gravar andando
+        tooltip: Cria pontos automaticamente enquanto voce anda
+
+      HuntFieldLabel
+        id: recordStepLabel
+        anchors.left: wpRecord.right
+        anchors.verticalCenter: wpRecord.verticalCenter
+        margin-left: 10
+        text: Um ponto a cada (SQM):
+
+      HuntNumberEdit
+        id: recordStepEdit
+        anchors.left: recordStepLabel.right
+        anchors.verticalCenter: wpRecord.verticalCenter
+        margin-left: 6
+
+      HuntHint
+        id: wpSelectedHint
+        anchors.left: recordStepEdit.right
+        anchors.right: parent.right
+        anchors.verticalCenter: wpRecord.verticalCenter
+        margin-left: 12
+        margin-right: 10
+        height: 14
+        text: Novos pontos entram no fim da rota.
+        text-wrap: false
+
+    HuntCard
+      id: waypointsCard
+      anchors.top: waypointToolsCard.bottom
+      anchors.left: parent.left
+      anchors.right: parent.right
+      anchors.bottom: parent.bottom
+      margin-top: 8
+      margin-left: 14
+      margin-right: 14
+      margin-bottom: 10
+
+      Label
+        id: waypointEmpty
+        anchors.centerIn: parent
+        text: Rota sem pontos. Use "+ Ponto aqui", "+ Clicar no mapa" ou "Gravar andando".
+        color: #8fa9ba
+        font: poppins semibold 10
+        text-auto-resize: true
+        phantom: true
+
+      ScrollablePanel
+        id: waypointList
+        anchors.fill: parent
+        margin: 8 18 8 8
+        vertical-scrollbar: waypointScrollBar
+        layout:
+          type: verticalBox
+          spacing: 4
+
+      AllianceVerticalScrollBar
+        id: waypointScrollBar
+        anchors.top: waypointList.top
+        anchors.bottom: waypointList.bottom
+        anchors.right: parent.right
+        margin-right: 3
+        step: 68
+        pixels-scroll: true
+
+  UIWidget
+    id: tab_targets
+    anchors.top: statusCard.bottom
+    anchors.left: parent.left
+    anchors.right: parent.right
+    anchors.bottom: parent.bottom
+    margin-top: 8
+    visible: false
+
+    HuntCard
+      id: targetAddCard
+      anchors.top: parent.top
+      anchors.left: parent.left
+      anchors.right: parent.right
+      height: 44
+      margin-left: 14
+      margin-right: 14
+
+      TextEdit
+        id: targetNameEdit
+        anchors.left: parent.left
+        anchors.verticalCenter: parent.verticalCenter
+        margin-left: 10
+        width: 220
+        height: 26
+        color: #ffffff
+        font: poppins bold 10
+        tooltip: Nome do Pokemon (ou * para todos). Enter adiciona.
+
+      HuntPrimaryButton
+        id: targetAdd
+        anchors.left: targetNameEdit.right
+        anchors.verticalCenter: parent.verticalCenter
+        margin-left: 6
+        width: 110
+        height: 26
+        font: poppins bold 9
+        text: + Adicionar
+
+      HuntSecondaryButton
+        id: targetAddVisible
+        anchors.left: targetAdd.right
+        anchors.right: parent.right
+        anchors.verticalCenter: parent.verticalCenter
+        margin-left: 6
+        margin-right: 10
+        height: 26
+        text: + Pokemon que estao na tela
+
+    HuntCard
+      id: targetListCard
+      anchors.top: targetAddCard.bottom
+      anchors.left: parent.left
+      anchors.right: parent.right
+      height: 160
+      margin-top: 8
+      margin-left: 14
+      margin-right: 14
+
+      Label
+        id: targetEmpty
+        anchors.centerIn: parent
+        text: Lista vazia.
+        color: #8fa9ba
+        font: poppins semibold 10
+        text-auto-resize: true
+        phantom: true
+
+      ScrollablePanel
+        id: targetList
+        anchors.fill: parent
+        margin: 8 18 8 8
+        vertical-scrollbar: targetScrollBar
+        layout:
+          type: verticalBox
+          spacing: 4
+
+      AllianceVerticalScrollBar
+        id: targetScrollBar
+        anchors.top: targetList.top
+        anchors.bottom: targetList.bottom
+        anchors.right: parent.right
+        margin-right: 3
+        step: 72
+        pixels-scroll: true
+
+    HuntCard
+      id: targetOptionsCard
+      anchors.top: targetListCard.bottom
+      anchors.left: parent.left
+      anchors.right: parent.right
+      anchors.bottom: parent.bottom
+      margin-top: 8
+      margin-left: 14
+      margin-right: 14
+      margin-bottom: 10
+
+      HuntSectionTitle
+        anchors.left: parent.left
+        anchors.top: parent.top
+        margin-left: 14
+        margin-top: 8
+        text: REGRAS DE ATAQUE
+
+      CheckBox
+        id: optAttackAll
+        anchors.left: parent.left
+        anchors.top: parent.top
+        margin-left: 14
+        margin-top: 30
+        width: 300
+        text: Atacar todos se a lista estiver vazia
+        tooltip: Com a lista preenchida, so ataca quem esta nela (* = todos)
+
+      CheckBox
+        id: optPreferShiny
+        anchors.left: parent.horizontalCenter
+        anchors.top: optAttackAll.top
+        width: 300
+        text: Shiny primeiro
+        tooltip: Shiny tem prioridade sobre qualquer outro alvo
+
+      CheckBox
+        id: optAntiKs
+        anchors.left: parent.left
+        anchors.top: optAttackAll.bottom
+        margin-left: 14
+        margin-top: 8
+        width: 300
+        text: Anti-KS (nao rouba alvo de outro jogador)
+        tooltip: Ignora alvo ja ferido com outro jogador a 2 SQM
+
+      CheckBox
+        id: optChase
+        anchors.left: parent.horizontalCenter
+        anchors.top: optAntiKs.top
+        width: 180
+        text: Perseguir alvo a mais de
+
+      HuntNumberEdit
+        id: chaseDistanceEdit
+        anchors.left: optChase.right
+        anchors.verticalCenter: optChase.verticalCenter
+        margin-left: 4
+        tooltip: SQM
+
+      HuntFieldLabel
+        id: maxDistanceLabel
+        anchors.left: parent.left
+        anchors.top: optAntiKs.bottom
+        margin-left: 14
+        margin-top: 12
+        text: Distancia maxima do alvo (SQM):
+
+      HuntNumberEdit
+        id: maxDistanceEdit
+        anchors.left: maxDistanceLabel.right
+        anchors.verticalCenter: maxDistanceLabel.verticalCenter
+        margin-left: 6
+
+      HuntFieldLabel
+        id: targetTimeoutLabel
+        anchors.left: parent.horizontalCenter
+        anchors.verticalCenter: maxDistanceLabel.verticalCenter
+        text: Desistir do alvo sem dano apos (s):
+
+      HuntNumberEdit
+        id: targetTimeoutEdit
+        anchors.left: targetTimeoutLabel.right
+        anchors.verticalCenter: maxDistanceLabel.verticalCenter
+        margin-left: 6
+
+      HuntFieldLabel
+        id: lureLabel
+        anchors.left: parent.left
+        anchors.top: maxDistanceLabel.bottom
+        margin-left: 14
+        margin-top: 14
+        text: Lure: so atacar com pelo menos
+
+      HuntNumberEdit
+        id: lureCountEdit
+        anchors.left: lureLabel.right
+        anchors.verticalCenter: lureLabel.verticalCenter
+        margin-left: 6
+        tooltip: 0 = desligado
+
+      HuntFieldLabel
+        id: lureRadiusLabel
+        anchors.left: lureCountEdit.right
+        anchors.verticalCenter: lureLabel.verticalCenter
+        margin-left: 6
+        text: alvos a ate
+
+      HuntNumberEdit
+        id: lureRadiusEdit
+        anchors.left: lureRadiusLabel.right
+        anchors.verticalCenter: lureLabel.verticalCenter
+        margin-left: 6
+
+      HuntFieldLabel
+        anchors.left: lureRadiusEdit.right
+        anchors.verticalCenter: lureLabel.verticalCenter
+        margin-left: 6
+        text: SQM (0 = desligado)
+
+      HuntFieldLabel
+        id: ignoreLabel
+        anchors.left: parent.left
+        anchors.top: lureLabel.bottom
+        margin-left: 14
+        margin-top: 14
+        text: Nunca atacar:
+
+      TextEdit
+        id: ignoreEdit
+        anchors.left: ignoreLabel.right
+        anchors.right: parent.right
+        anchors.verticalCenter: ignoreLabel.verticalCenter
+        margin-left: 6
+        margin-right: 14
+        height: 24
+        color: #ffffff
+        font: poppins semibold 10
+        tooltip: Nomes separados por virgula (ex.: Ditto, Abra)
+
+  UIWidget
+    id: tab_support
+    anchors.top: statusCard.bottom
+    anchors.left: parent.left
+    anchors.right: parent.right
+    anchors.bottom: parent.bottom
+    margin-top: 8
+    visible: false
+
+    HuntCard
+      id: healCard
+      anchors.top: parent.top
+      anchors.left: parent.left
+      anchors.right: parent.right
+      height: 128
+      margin-left: 14
+      margin-right: 14
+
+      HuntSectionTitle
+        anchors.left: parent.left
+        anchors.top: parent.top
+        margin-left: 14
+        margin-top: 8
+        text: CURA AUTOMATICA POR ITEM
+
+      HuntItemSlot
+        id: healSlot
+        anchors.left: parent.left
+        anchors.top: parent.top
+        margin-left: 14
+        margin-top: 30
+        tooltip: Arraste o item usado no treinador
+
+      Label
+        id: healTitle
+        anchors.left: healSlot.right
+        anchors.top: healSlot.top
+        margin-left: 10
+        text: Treinador
+        color: #9cd7ff
+        font: poppins bold 10
+        text-auto-resize: true
+
+      HuntHint
+        id: healInfo
+        anchors.left: healSlot.right
+        anchors.top: healTitle.bottom
+        margin-left: 10
+        width: 200
+        height: 14
+        text: Nao configurado
+        text-wrap: false
+
+      HuntNumberEdit
+        id: healPercentEdit
+        anchors.right: healSelect.left
+        anchors.verticalCenter: healSlot.verticalCenter
+        margin-right: 12
+
+      HuntFieldLabel
+        id: healPercentLabel
+        anchors.right: healPercentEdit.left
+        anchors.verticalCenter: healSlot.verticalCenter
+        margin-right: 6
+        text: Usar com HP <= %
+
+      HuntSecondaryButton
+        id: healSelect
+        anchors.right: healClear.left
+        anchors.verticalCenter: healSlot.verticalCenter
+        margin-right: 4
+        width: 80
+        text: Selecionar
+
+      HuntSecondaryButton
+        id: healClear
+        anchors.right: parent.right
+        anchors.verticalCenter: healSlot.verticalCenter
+        margin-right: 12
+        width: 56
+        text: Limpar
+
+      HuntItemSlot
+        id: summonHealSlot
+        anchors.left: parent.left
+        anchors.top: healSlot.bottom
+        margin-left: 14
+        margin-top: 10
+        tooltip: Arraste a potion usada no seu Pokemon
+
+      Label
+        id: summonHealTitle
+        anchors.left: summonHealSlot.right
+        anchors.top: summonHealSlot.top
+        margin-left: 10
+        text: Pokemon (summon)
+        color: #e0c3ff
+        font: poppins bold 10
+        text-auto-resize: true
+
+      HuntHint
+        id: summonHealInfo
+        anchors.left: summonHealSlot.right
+        anchors.top: summonHealTitle.bottom
+        margin-left: 10
+        width: 200
+        height: 14
+        text: Nao configurado
+        text-wrap: false
+
+      HuntNumberEdit
+        id: summonHealPercentEdit
+        anchors.right: summonHealSelect.left
+        anchors.verticalCenter: summonHealSlot.verticalCenter
+        margin-right: 12
+
+      HuntFieldLabel
+        id: summonHealPercentLabel
+        anchors.right: summonHealPercentEdit.left
+        anchors.verticalCenter: summonHealSlot.verticalCenter
+        margin-right: 6
+        text: Usar com HP <= %
+
+      HuntSecondaryButton
+        id: summonHealSelect
+        anchors.right: summonHealClear.left
+        anchors.verticalCenter: summonHealSlot.verticalCenter
+        margin-right: 4
+        width: 80
+        text: Selecionar
+
+      HuntSecondaryButton
+        id: summonHealClear
+        anchors.right: parent.right
+        anchors.verticalCenter: summonHealSlot.verticalCenter
+        margin-right: 12
+        width: 56
+        text: Limpar
+
+    HuntCard
+      id: movesCard
+      anchors.top: healCard.bottom
+      anchors.left: parent.left
+      anchors.right: parent.right
+      anchors.bottom: parent.bottom
+      margin-top: 8
+      margin-left: 14
+      margin-right: 14
+      margin-bottom: 10
+
+      HuntSectionTitle
+        anchors.left: parent.left
+        anchors.top: parent.top
+        margin-left: 14
+        margin-top: 8
+        text: ROTACAO DE MOVES
+
+      HuntPrimaryButton
+        id: moveAdd
+        anchors.right: parent.right
+        anchors.top: parent.top
+        margin-right: 12
+        margin-top: 6
+        width: 110
+        height: 24
+        font: poppins bold 9
+        text: + Add move
+
+      CheckBox
+        id: optMovesEnabled
+        anchors.left: parent.left
+        anchors.top: parent.top
+        margin-left: 14
+        margin-top: 32
+        width: 230
+        text: Usar moves durante o ataque
+
+      HuntFieldLabel
+        id: moveRangeLabel
+        anchors.left: optMovesEnabled.right
+        anchors.verticalCenter: optMovesEnabled.verticalCenter
+        margin-left: 10
+        text: Alvo a ate (SQM):
+
+      HuntNumberEdit
+        id: moveRangeEdit
+        anchors.left: moveRangeLabel.right
+        anchors.verticalCenter: optMovesEnabled.verticalCenter
+        margin-left: 6
+
+      HuntHint
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.top: optMovesEnabled.bottom
+        margin-left: 14
+        margin-right: 14
+        margin-top: 6
+        height: 14
+        text: Envia o comando no chat (ex.: m1) quando a recarga termina, na ordem da lista.
+        text-wrap: false
+
+      Label
+        id: moveEmpty
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.top: parent.top
+        margin-top: 110
+        text: Nenhum move. Clique em + Add move.
+        color: #8fa9ba
+        font: poppins semibold 10
+        text-auto-resize: true
+        phantom: true
+
+      ScrollablePanel
+        id: moveList
+        anchors.top: parent.top
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
+        margin: 78 18 8 8
+        vertical-scrollbar: moveScrollBar
+        layout:
+          type: verticalBox
+          spacing: 4
+
+      AllianceVerticalScrollBar
+        id: moveScrollBar
+        anchors.top: moveList.top
+        anchors.bottom: moveList.bottom
+        anchors.right: parent.right
+        margin-right: 3
+        step: 72
+        pixels-scroll: true
+
+  UIWidget
+    id: tab_safety
+    anchors.top: statusCard.bottom
+    anchors.left: parent.left
+    anchors.right: parent.right
+    anchors.bottom: parent.bottom
+    margin-top: 8
+    visible: false
+
+    HuntCard
+      id: safetyCard
+      anchors.top: parent.top
+      anchors.left: parent.left
+      anchors.right: parent.right
+      height: 178
+      margin-left: 14
+      margin-right: 14
+
+      HuntSectionTitle
+        anchors.left: parent.left
+        anchors.top: parent.top
+        margin-left: 14
+        margin-top: 8
+        text: QUANDO PARAR OU ESPERAR
+
+      CheckBox
+        id: optStaffPause
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.top: parent.top
+        margin-left: 14
+        margin-right: 14
+        margin-top: 32
+        text: Esperar enquanto houver staff (GM/CM/Tutor) na tela (recomendado)
+        tooltip: Para de andar e atacar; o Auto Catch tambem espera
+
+      CheckBox
+        id: optPlayerPause
+        anchors.left: parent.left
+        anchors.top: optStaffPause.bottom
+        margin-left: 14
+        margin-top: 10
+        width: 290
+        text: Esperar enquanto houver jogador na tela
+        tooltip: Jogadores da lista ao lado sao ignorados
+
+      HuntFieldLabel
+        id: whitelistLabel
+        anchors.left: optPlayerPause.right
+        anchors.verticalCenter: optPlayerPause.verticalCenter
+        margin-left: 6
+        text: Exceto:
+
+      TextEdit
+        id: playerWhitelistEdit
+        anchors.left: whitelistLabel.right
+        anchors.right: parent.right
+        anchors.verticalCenter: optPlayerPause.verticalCenter
+        margin-left: 6
+        margin-right: 14
+        height: 24
+        color: #ffffff
+        font: poppins semibold 10
+        tooltip: Nomes separados por virgula (amigos, seu segundo char)
+
+      CheckBox
+        id: optLowHpStop
+        anchors.left: parent.left
+        anchors.top: optPlayerPause.bottom
+        margin-left: 14
+        margin-top: 12
+        width: 290
+        text: Parar o Hunt quando o HP do treinador for <= %
+
+      HuntNumberEdit
+        id: lowHpPercentEdit
+        anchors.left: optLowHpStop.right
+        anchors.verticalCenter: optLowHpStop.verticalCenter
+        margin-left: 6
+
+      CheckBox
+        id: optStuckSkip
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.top: optLowHpStop.bottom
+        margin-left: 14
+        margin-right: 14
+        margin-top: 12
+        text: Pular ponto inalcancavel (travado por 3 tentativas)
+
+      CheckBox
+        id: optAutoResume
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.top: optStuckSkip.bottom
+        margin-left: 14
+        margin-right: 14
+        margin-top: 10
+        text: Retomar o Hunt ao entrar no jogo (se estava ligado ao sair)
+
+    HuntCard
+      id: alertCard
+      anchors.top: safetyCard.bottom
+      anchors.left: parent.left
+      anchors.right: parent.right
+      height: 84
+      margin-top: 8
+      margin-left: 14
+      margin-right: 14
+
+      HuntSectionTitle
+        anchors.left: parent.left
+        anchors.top: parent.top
+        margin-left: 14
+        margin-top: 8
+        text: ALERTAS
+
+      CheckBox
+        id: optAlarm
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.top: parent.top
+        margin-left: 14
+        margin-right: 14
+        margin-top: 32
+        text: Piscar a janela e avisar na tela (staff, jogador, HP baixo, shiny)
+
+      CheckBox
+        id: optShinyAlert
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.top: optAlarm.bottom
+        margin-left: 14
+        margin-right: 14
+        margin-top: 10
+        text: Avisar quando um Shiny aparecer na tela
+
+    HuntCard
+      id: infoCard
+      anchors.top: alertCard.bottom
+      anchors.left: parent.left
+      anchors.right: parent.right
+      anchors.bottom: parent.bottom
+      margin-top: 8
+      margin-left: 14
+      margin-right: 14
+      margin-bottom: 10
+
+      HuntSectionTitle
+        anchors.left: parent.left
+        anchors.top: parent.top
+        margin-left: 14
+        margin-top: 8
+        text: COMO O HUNT DECIDE
+
+      HuntHint
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.top: parent.top
+        anchors.bottom: parent.bottom
+        margin: 30 14 8 14
+        text: 1) Protecoes (staff, jogador, HP).  2) Cura do treinador e do Pokemon.  3) Ataque: escolhe o alvo pela prioridade, Shiny primeiro, alvo atual, HP e distancia.  4) Auto Catch: espera os corpos pendentes sem deixa-los sair da tela.  5) Rota: anda ate o proximo ponto; se travar, tenta destravar e pula o ponto.
+
+HuntWindow < UIWindow
+  id: huntWindow
+  size: 700 660
+  anchors.centerIn: parent
+  image-border: 15
+  image-source: /images/newui/background_3
+  background-color: #101a23
+  draggable: true
+  focusable: true
+  visible: false
+
+  UIWidget
+    id: headerIconBase
+    size: 32 32
+    anchors.left: parent.left
+    anchors.top: parent.top
+    margin-left: 16
+    margin-top: 12
+    image-source: /images/general_ui/bordered_background
+    image-border: 8
+    image-color: #2a6b47
+    phantom: true
+
+    UIWidget
+      size: 24 24
+      anchors.centerIn: parent
+      image-source: /modules/game_hunt/images/icon
+      phantom: true
+
+  Label
+    id: titleLabel
+    anchors.left: headerIconBase.right
+    anchors.top: parent.top
+    margin-left: 10
+    margin-top: 10
+    text: Hunt
+    color: #ffffff
+    font: poppins bold 16
+    text-auto-resize: true
+    phantom: true
+
+  Label
+    id: subtitleLabel
+    anchors.left: titleLabel.right
+    anchors.verticalCenter: titleLabel.verticalCenter
+    margin-left: 12
+    text: Caca automatica por rotas, integrada ao Auto Catch
+    color: #7793a7
+    font: poppins semibold 10
+    text-auto-resize: true
+    phantom: true
+
+  HuntCloseButton
+    id: closeButton
+    anchors.top: parent.top
+    anchors.right: parent.right
+    margin-top: 12
+    margin-right: 12
+
+  HuntPanel
+    id: huntPanel
+    anchors.top: headerIconBase.bottom
+    anchors.left: parent.left
+    anchors.right: parent.right
+    anchors.bottom: parent.bottom
+    margin-top: 8
+
