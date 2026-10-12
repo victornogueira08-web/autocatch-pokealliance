@@ -395,6 +395,19 @@ check("staff on screen holds every throw and releases when it leaves", function(
   equal(#fake.uses, 1)
 end)
 
+check("a Hunt waiting for staff/player also holds the throws", function()
+  local fake, api = boot()
+  consumeOnThrow(fake)
+  local huntState = "PAUSED_PLAYER"
+  fake.env.modules.game_hunt = { getBotState = function() return huntState end }
+  corpseNear(fake, 1, 0)
+  fake:advance(3000)
+  equal(#fake.uses, 0)
+  huntState = "WALKING"
+  fake:advance(3000)
+  equal(#fake.uses, 1)
+end)
+
 check("staff guard can be turned off", function()
   local fake = boot({ staffGuard = false })
   consumeOnThrow(fake)

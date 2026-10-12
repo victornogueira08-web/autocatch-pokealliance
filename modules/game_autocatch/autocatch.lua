@@ -1665,12 +1665,14 @@ function findVisibleStaff()
   staffCache.at = currentTime
   staffCache.name = nil
 
-  local cavebot = modules.game_cavebot_pka
-  if cavebot and type(cavebot.getBotState) == 'function' then
-    local ok, state = pcall(cavebot.getBotState)
-    if ok and (state == 'PAUSED_STAFF' or state == 'PAUSED_PLAYER') then
-      staffCache.name = 'CaveBot em pausa por staff/jogador'
-      return staffCache.name
+  for _, botName in ipairs({ 'game_cavebot_pka', 'game_hunt' }) do
+    local bot = modules[botName]
+    if bot and type(bot.getBotState) == 'function' then
+      local ok, state = pcall(bot.getBotState)
+      if ok and (state == 'PAUSED_STAFF' or state == 'PAUSED_PLAYER') then
+        staffCache.name = botName == 'game_hunt' and 'Hunt em espera por staff/jogador' or 'CaveBot em pausa por staff/jogador'
+        return staffCache.name
+      end
     end
   end
 

@@ -1,0 +1,11 @@
+Module
+  name: game_hunt
+  description: Hunt automatico por rotas (waypoints), integrado ao Auto Catch
+  author: Local customization
+  sandboxed: true
+  autoload: true
+  autoload-priority: 1001
+  dependencies: [ client_topmenu, game_interface ]
+  scripts: [ hunt ]
+  @onLoad: init()
+  @onUnload: terminate()
